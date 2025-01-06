@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { SigninCard } from "./components/organisms/auth/signinCard";
 import { SignupCard } from "./components/organisms/auth/SignupCard";
 import { Auth } from "./pages/Auth/Auth";
+import { NotFound } from "./pages/NotFound/Notfound";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </Auth>
         }
       />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
