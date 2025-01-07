@@ -3,7 +3,7 @@ import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Routes } from "react-router-dom";
 
-import { SigninCard } from "./components/organisms/auth/signinCard";
+import { SigninContainer } from "./components/organisms/auth/SigninContainer";
 import { SignupContainer } from "./components/organisms/auth/SignupContainer";
 import { Toaster } from "./components/ui/toaster";
 import { Auth } from "./pages/Auth/Auth";
@@ -26,7 +26,15 @@ function App() {
           path="/auth/signin"
           element={
             <Auth>
-              <SigninCard />
+              <SigninContainer />
+            </Auth>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <Auth>
+              <h1 className="font-bold text-4xl">Home</h1>
             </Auth>
           }
         />

@@ -18,7 +18,7 @@ export const useSignup = () => {
         title: "Failed to signup",
         message: error.message,
         type: "error",
-        variant:"destructive"
+        variant: "destructive",
       });
     },
     onSuccess: (data) => {

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { LucideLoader2, TriangleAlert } from "lucide-react";
+import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -12,41 +13,59 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
-export const SigninCard = () => {
+export const SigninCard = ({
+  signinForm,
+  setSigninForm,
+  error,
+  isPending,
+  isSuccess,
+  onSigninFormSubmit,
+}) => {
   const navigate = useNavigate();
-
-  const [SigninForm, setSigninForm] = useState({
-    email: "",
-    password: "",
-  });
 
   return (
     <Card className="w-full h-full">
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>Sign in to access your account</CardDescription>
+        {error && (
+          <div className=" flex items-center gap-x-2 p-4 bg-destructive/15 rounded-md text-destructive text-sm font-semibold ">
+            <TriangleAlert className="size-5" />
+            <p>{error.message}</p>
+          </div>
+        )}
+        {isSuccess && (
+          <div className="bg-primary/20 text-primary flex  rounded-md p-4 gap-x-2 font-semibold text-sm ">
+            <FaCheck className="size-5" />
+            <p>
+              Successfully signed in . You will be redirected to the home page
+              in a few seconds.
+              <LucideLoader2 className="animate-spin mt-2 ml-2" />
+            </p>
+          </div>
+        )}
       </CardHeader>
       <CardContent>
-        <form className="space-y-3">
+        <form className="space-y-3" onSubmit={onSigninFormSubmit}>
           <Input
             placeholder="Email"
             type="email"
             required
-            value={SigninForm.email}
-            disabled={false}
+            value={signinForm.email}
+            disabled={isPending}
             onChange={(e) =>
-              setSigninForm({ ...SigninForm, email: e.target.value })
+              setSigninForm({ ...signinForm, email: e.target.value })
             }
           />
           <Input
             placeholder="Password"
             type="password"
             required
-            disabled={false}
+            disabled={isPending}
             onChange={(e) =>
-              setSigninForm({ ...SigninForm, password: e.target.value })
+              setSigninForm({ ...signinForm, password: e.target.value })
             }
-            value={SigninForm.password}
+            value={signinForm.password}
           />
           <Button size="lg" type="submit" disabled={false} className="w-full">
             Continue
