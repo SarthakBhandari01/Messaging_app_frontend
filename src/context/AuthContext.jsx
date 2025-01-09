@@ -6,15 +6,24 @@ export const AuthContextProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
     token: null,
+    isLoading: true,
   });
 
   useEffect(() => {
+    console.log(" Rendering for first time ");
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     if (user && token) {
       setAuth({
         user: JSON.parse(user),
         token: token,
+        isLoading: false,
+      });
+    } else {
+      setAuth({
+        user: null,
+        token: null,
+        isLoading: false,
       });
     }
   }, []);

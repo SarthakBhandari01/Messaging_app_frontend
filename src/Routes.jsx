@@ -5,6 +5,8 @@ import { SignupContainer } from "@/components/organisms/auth/SignupContainer";
 import { Auth } from "@/pages/Auth/Auth";
 import { NotFound } from "@/pages/NotFound/Notfound";
 
+import { ProtectedRoute } from "./components/molecules/ProtectedRoute/protectedRoute";
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -27,9 +29,11 @@ export const AppRoutes = () => {
       <Route
         path="/home"
         element={
-          <Auth>
-            <h1 className="font-bold text-4xl">Home</h1>
-          </Auth>
+          <ProtectedRoute>
+            <Auth>
+              <h1 className="font-bold text-4xl">Home</h1>
+            </Auth>
+          </ProtectedRoute>
         }
       />
       <Route path="/*" element={<NotFound />} />
