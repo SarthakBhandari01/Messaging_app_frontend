@@ -4,7 +4,7 @@ import { fetchWorkspaceRequest } from "@/api/workspaces";
 import { useAuth } from "@/hooks/context/useAuth";
 
 export const useFetchWorkspace = () => {
-  const auth = useAuth();
+  const { auth } = useAuth();
 
   const {
     isFetching,
@@ -12,8 +12,8 @@ export const useFetchWorkspace = () => {
     error,
     data: workspaces,
   } = useQuery({
-    queryFn: () => fetchWorkspaceRequest(auth?.token),
-    queryKey: "fetchWorkspaces",
+    queryFn: () => fetchWorkspaceRequest({ token: auth?.token }),
+    queryKey: ["fetchWorkspaces"],
     staleTime: 30000,
   });
 

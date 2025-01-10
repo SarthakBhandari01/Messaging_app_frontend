@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/config/axiosConfig";
 
 export const createWorkspaceRequest = async ({ name, description, token }) => {
   try {
@@ -31,8 +31,9 @@ export const fetchWorkspaceRequest = async ({ token }) => {
     });
 
     console.log("Response in fetch workspace request", response);
-    return response;
+    return response?.data?.data;
   } catch (error) {
     console.error("Error in create workspace request", error);
+    return error.response.data;
   }
 };
