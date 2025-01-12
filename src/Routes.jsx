@@ -31,9 +31,7 @@ export const AppRoutes = () => {
         path="/home"
         element={
           <ProtectedRoute>
-            <Auth>
-              <Home />
-            </Auth>
+            <Home />
           </ProtectedRoute>
         }
       />
