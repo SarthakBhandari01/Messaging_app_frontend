@@ -8,9 +8,12 @@ import {
 import { UserButton } from "@/components/atoms/UserButton/UserButton";
 import { SidebarButton } from "@/components/molecules/SidebarButton/SidebarButton";
 
+import { WorkspaceSwitcher } from "./WorkspaceSwitcher";
+
 export const WorkspaceSidebar = () => {
   return (
     <aside className=" w-[80px] bg-slack-dark h-full flex flex-col gap-y-4 items-center pt-[10px] pb-[6px]">
+      <WorkspaceSwitcher />
       <SidebarButton Icon={HomeIcon} label={"Home"} />
       <SidebarButton Icon={MessageSquareIcon} label={"Message"} />
       <SidebarButton Icon={BellIcon} label={"Notifications"} />
