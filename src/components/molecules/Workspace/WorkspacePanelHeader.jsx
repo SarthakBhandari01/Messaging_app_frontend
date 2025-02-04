@@ -1,4 +1,5 @@
 import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from "lucide-react";
+import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,8 +15,12 @@ import { useWorkspacePreferencesModal } from "@/hooks/context/useWorkspacePrefer
 export const WorkspacePannelHeader = ({ workspace }) => {
   console.log("workspace : ", workspace);
 
-  const { setOpenPreferences, setInitialValue } =
+  const { setOpenPreferences, setInitialValue, setWorkspace } =
     useWorkspacePreferencesModal();
+
+  useEffect(() => {
+    setWorkspace(workspace);
+  });
 
   const workspaceMembers = workspace?.members;
 
@@ -54,7 +59,7 @@ export const WorkspacePannelHeader = ({ workspace }) => {
                   setOpenPreferences(true);
                 }}
               >
-                Prefrences
+                Preferences
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="cursor-pointer py-2">
