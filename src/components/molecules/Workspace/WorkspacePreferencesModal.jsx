@@ -1,5 +1,7 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Dialog,
@@ -14,9 +16,14 @@ import { useToast } from "@/hooks/use-toast";
 export const WorkspacePreferencesModal = () => {
   const { openPreferences, setOpenPreferences, initialValue, workspace } =
     useWorkspacePreferencesModal();
+
   const [workspaceId, setWorkspaceId] = useState(null);
 
   const { toast } = useToast();
+
+  const queryClient = useQueryClient();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setWorkspaceId(workspace?._id);
@@ -31,6 +38,9 @@ export const WorkspacePreferencesModal = () => {
   async function handleDelete() {
     try {
       await deleteWorkspaceMutation();
+      setOpenPreferences(false);  
+      queryClient.invalidateQueries("fetchWorkspaces");
+      navigate("/home");
       toast({
         title: "Workspace deleted successfully",
         type: "Success",
