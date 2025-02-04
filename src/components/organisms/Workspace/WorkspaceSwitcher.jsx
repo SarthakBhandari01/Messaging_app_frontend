@@ -1,6 +1,7 @@
 import { Loader, LucideLoader2 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,15 +20,17 @@ export const WorkspaceSwitcher = () => {
   const { isFetching, workspace } = useGetWorkspaceById(workspaceId);
 
   const { workspaces, isFetching: isFetchingWorkspace } = useFetchWorkspace();
-
+  console.log("tadoww => ", workspace);
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="size-9 relative overflow-hidden text-xl bg-[#ABABAD] hover:bg-[#ABABAD]/80 font-semibold text-slate-800">
-        {isFetching ? (
-          <LucideLoader2 className="animate-spin" />
-        ) : (
-          workspace?.name.charAt(0).toUpperCase()
-        )}
+    <DropdownMenu>  
+      <DropdownMenuTrigger>
+        <Button className="size-9 relative overflow-hidden text-xl bg-[#ABABAD] hover:bg-[#ABABAD]/80 font-semibold text-slate-800">
+          {isFetching ? (
+            <LucideLoader2 className="animate-spin" />
+          ) : (
+            workspace?.name.charAt(0).toUpperCase()
+          )}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Workspaces</DropdownMenuLabel>
