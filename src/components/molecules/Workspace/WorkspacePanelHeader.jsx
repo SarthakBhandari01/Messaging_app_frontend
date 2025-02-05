@@ -13,8 +13,6 @@ import { useAuth } from "@/hooks/context/useAuth";
 import { useWorkspacePreferencesModal } from "@/hooks/context/useWorkspacePreferencesModal";
 
 export const WorkspacePannelHeader = ({ workspace }) => {
-  console.log("workspace : ", workspace);
-
   const { setOpenPreferences, setInitialValue, setWorkspace } =
     useWorkspacePreferencesModal();
 

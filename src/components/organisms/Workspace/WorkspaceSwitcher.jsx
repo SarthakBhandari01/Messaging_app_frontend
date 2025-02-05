@@ -20,7 +20,7 @@ export const WorkspaceSwitcher = () => {
   const { isFetching, workspace } = useGetWorkspaceById(workspaceId);
 
   const { workspaces, isFetching: isFetchingWorkspace } = useFetchWorkspace();
-  console.log("tadoww => ", workspace);
+
   return (
     <DropdownMenu>  
       <DropdownMenuTrigger>
