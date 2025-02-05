@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { deleteWorkspaceRequest } from "@/api/workspaces";
+import { updateWorkspaceRequest } from "@/api/workspaces";
 import { useAuth } from "@/hooks/context/useAuth";
 
 export const useUpdateWorkspace = (workspaceId) => {
@@ -12,7 +12,7 @@ export const useUpdateWorkspace = (workspaceId) => {
     mutateAsync: updateWorkspaceMutation,
   } = useMutation({
     mutationFn: (name) =>
-      deleteWorkspaceRequest({ workspaceId, token: auth?.token, name }),
+      updateWorkspaceRequest({ workspaceId, token: auth?.token, name }),
     onSuccess: () => {
       console.log("Workspace updated successfully");
     },
