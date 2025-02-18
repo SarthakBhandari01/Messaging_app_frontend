@@ -1,13 +1,22 @@
-import { AlertTriangleIcon, Loader, MessageSquareTextIcon } from "lucide-react";
+import {
+  AlertTriangleIcon,
+  HashIcon,
+  Loader,
+  MessageSquareTextIcon,
+  SendHorizonalIcon,
+} from "lucide-react";
 import { useParams } from "react-router-dom";
 
 import { SideBarItem } from "@/components/atoms/SideBarItem/SideBarItem";
 import { WorkspacePannelHeader } from "@/components/molecules/Workspace/WorkspacePanelHeader";
+import { WorkspacePanelSection } from "@/components/molecules/Workspace/WorkspacePanelSection";
 import { useGetWorkspaceById } from "@/hooks/apis/workspaces/useGetWorkspaceById";
+import { useCreateChannelModal } from "@/hooks/context/useCreateChannelModal";
 
 export const WorkspacePanel = () => {
   const { workspaceId } = useParams();
   const { workspace, isFetching, isSuccess } = useGetWorkspaceById(workspaceId);
+  const { setOpenCreateChannelModal } = useCreateChannelModal();
 
   if (isFetching) {
     return (
@@ -30,11 +39,35 @@ export const WorkspacePanel = () => {
       <WorkspacePannelHeader workspace={workspace} />
       <div className="flex flex-col px-2 mt-3">
         <SideBarItem
-          label={"Threads"}
-          id={"threads"}
+          label={"Thread"}
+          channelId={"thread"}
           variant="default"
           icon={MessageSquareTextIcon}
         />
+        <SideBarItem
+          label="Draft and Sends"
+          icon={SendHorizonalIcon}
+          channelId="drafts"
+          variant="default"
+        />
+
+        <WorkspacePanelSection
+          label={"Channels"}
+          onIconClick={() => {
+            setOpenCreateChannelModal(true);
+          }}
+        >
+          {workspace?.channels.map((channel) => {
+            return (
+              <SideBarItem
+                key={channel._id}
+                label={channel.name}
+                channelId={channel._id}
+                icon={HashIcon}
+              />
+            );
+          })}
+        </WorkspacePanelSection>
       </div>
     </div>
   );
