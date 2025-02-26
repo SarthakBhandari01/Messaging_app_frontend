@@ -5,7 +5,6 @@ import { useAuth } from "@/hooks/context/useAuth";
 
 export const useDeleteWorkspace = (workspaceId) => {
   const { auth } = useAuth();
-  console.log("Auth in useDeleteWorkspace", auth);
   const {
     isPending,
     isSuccess,

@@ -21,10 +21,10 @@ export const WorkspacePannelHeader = ({ workspace }) => {
   });
 
   const workspaceMembers = workspace?.members;
-
   const { auth } = useAuth();
   const isLoggedInUserAdminOfWorkspace = workspaceMembers?.find(
-    (member) => member.memberId === auth?.user?._id && member.role === "admin"
+    (member) =>
+      member.memberId._id === auth?.user?._id && member.role === "admin"
   );
   return (
     <div className="h-50px flex items-center justify-between px-4 gap-0.5">
