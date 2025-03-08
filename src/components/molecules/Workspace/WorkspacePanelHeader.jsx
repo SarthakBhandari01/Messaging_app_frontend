@@ -36,6 +36,7 @@ export const WorkspacePannelHeader = ({ workspace }) => {
         workspaceName={workspace?.name}
         joinCode={workspace?.joinCode}
         setOpenInviteModal={setOpenInviteModal}
+        workspaceId={workspace._id}
       />
       <div className="h-50px flex items-center justify-between px-4 gap-0.5">
         <DropdownMenu>
@@ -53,7 +54,7 @@ export const WorkspacePannelHeader = ({ workspace }) => {
               <div className="size-9 relative overflow-hidden text-white font-semibold text-xl rounded-md  flex justify-center items-center mr-2 bg-[#616061] ">
                 {workspace?.name.charAt(0).toUpperCase()}
               </div>
-              <div className="">
+              <div className="flex flex-col items-start">
                 <p className="font-bold">{workspace?.name}</p>
                 <p className="text-muted-foreground text-xs">
                   Active workspace
