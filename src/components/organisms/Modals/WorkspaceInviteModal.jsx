@@ -57,6 +57,14 @@ export const WorkspaceInviteModal = ({
             Copy Link
             <CopyIcon className="size-4 ml-2" />
           </Button>
+          <a
+            href={`/workspaces/join/${workspaceId}`}
+            rel=""
+            className="text-blue-500"
+            target="_blank"
+          >
+            Redirect to the join page
+          </a>
         </div>
         <div
           className="flex justify-center items-center"
