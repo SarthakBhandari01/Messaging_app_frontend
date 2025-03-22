@@ -54,7 +54,7 @@ export const WorkspaceInviteModal = ({
         <div className="flex flex-col justify-center items-center gap-y-4 py-8">
           <p className="font-bold text-4xl">{joinCode}</p>
           <Button size="sm" variant="ghost" onClick={handleCopy}>
-            Copy Link
+            Copy code
             <CopyIcon className="size-4 ml-2" />
           </Button>
           <a
