@@ -8,6 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 
 import { SideBarItem } from "@/components/atoms/SideBarItem/SideBarItem";
+import { UserItem } from "@/components/atoms/UserItem/userItem";
 import { WorkspacePannelHeader } from "@/components/molecules/Workspace/WorkspacePanelHeader";
 import { WorkspacePanelSection } from "@/components/molecules/Workspace/WorkspacePanelSection";
 import { useGetWorkspaceById } from "@/hooks/apis/workspaces/useGetWorkspaceById";
@@ -17,7 +18,7 @@ export const WorkspacePanel = () => {
   const { workspaceId } = useParams();
   const { workspace, isFetching, isSuccess } = useGetWorkspaceById(workspaceId);
   const { setOpenCreateChannelModal } = useCreateChannelModal();
-
+  console.log("workspace ", workspace);
   if (isFetching) {
     return (
       <div className="flex flex-col gap-y-2 h-full items-center justify-center text-white">
@@ -64,6 +65,18 @@ export const WorkspacePanel = () => {
                 label={channel.name}
                 channelId={channel._id}
                 icon={HashIcon}
+              />
+            );
+          })}
+        </WorkspacePanelSection>
+        <WorkspacePanelSection label={"Direct messages"} onIconClick={() => {}}>
+          {workspace?.members?.map((member) => {
+            return (
+              <UserItem
+                image={member?.memberId?.avatar}
+                label={member?.memberId?.username}
+                key={member?.memberId?._id}
+                id={member?._id}
               />
             );
           })}
