@@ -8,11 +8,16 @@ export const useGetWorkspaceById = (id) => {
   const {
     isFetching,
     isSuccess,
-    error,
     data: workspace,
+    isError,
+    error,
   } = useQuery({
-    queryFn: () =>
-      fetchWorkspaceDetailsRequest({ workspaceId: id, token: auth?.token }),
+    queryFn: () => {
+      return fetchWorkspaceDetailsRequest({
+        workspaceId: id,
+        token: auth?.token,
+      });
+    },
     queryKey: [`fetchWorkspaceById-${id}`],
     staleTime: 10000,
   });
@@ -21,5 +26,6 @@ export const useGetWorkspaceById = (id) => {
     isSuccess,
     error,
     workspace,
+    isError,
   };
 };

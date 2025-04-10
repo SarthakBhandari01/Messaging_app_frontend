@@ -19,7 +19,7 @@ export const Home = () => {
       console.log("No workspaces found, creating one");
       setOpenCreateWorkspaceModal(true);
     } else {
-      navigate(`/workspaces/${workspaces[0]._id}`);
+      navigate(`/workspaces/${workspaces[0]?._id}`);
     }
   }, [isFetching, workspaces, navigate, setOpenCreateWorkspaceModal]);
   return (

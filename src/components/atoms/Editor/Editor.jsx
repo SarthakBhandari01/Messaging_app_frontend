@@ -6,6 +6,8 @@ import { PiTextAa } from "react-icons/pi";
 
 import { Button } from "@/components/ui/button";
 
+import { Hint } from "../Hint/Hint";
+
 export const Editor = () => {
   const containerRef = useRef();
   const quillRef = useRef();
@@ -66,14 +68,18 @@ export const Editor = () => {
       <div className="flex flex-col border border-slate-500 rounded-md overflow-hidden  focus-within:shadow-sm focus-within:border-slate-400 bg-white">
         <div className="h-full" ref={containerRef} />
         <div className="flex px-2 pb-2 ">
-          <Button
-            variant="ghost"
-            size="iconSm"
-            disable={false}
-            onClick={toggleToolbar}
+          <Hint
+            label={!isToolbarVisible ? "Show Toolbar" : "Hide Toolbar"}
           >
-            <PiTextAa />
-          </Button>
+            <Button
+              variant="ghost"
+              size="iconSm"
+              disable={false}
+              onClick={toggleToolbar}
+            >
+              <PiTextAa className="size-4" />
+            </Button>
+          </Hint>
         </div>
       </div>
       <p className="p-2 text-[10px] text-muted-foreground flex justify-end">

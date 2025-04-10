@@ -31,7 +31,7 @@ export const fetchWorkspaceRequest = async ({ token }) => {
     return response?.data?.data;
   } catch (error) {
     console.error("Error in create workspace request", error);
-    return error.response.data;
+    throw error.response.data;
   }
 };
 
@@ -44,8 +44,8 @@ export const fetchWorkspaceDetailsRequest = async ({ workspaceId, token }) => {
     });
     return response?.data?.data;
   } catch (error) {
-    console.error("Error in fetch workspace details request ", error);
-    return error.response;
+    console.log("Error in fetch workspace details request ", error);
+    throw error.response;
   }
 };
 
@@ -60,7 +60,7 @@ export const deleteWorkspaceRequest = async ({ workspaceId, token }) => {
     return response?.data;
   } catch (error) {
     console.error("Error in delete workspace request ", error);
-    return error.response.data;
+    throw error.response.data;
   }
 };
 
