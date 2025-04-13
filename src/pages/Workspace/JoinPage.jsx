@@ -12,7 +12,6 @@ export const JoinPage = () => {
   const navigate = useNavigate();
 
   async function handleAddMemberToWorkspace(joinCode) {
-    console.log("Adding member to workspace");
     try {
       await joinWorkspaceMutation(joinCode);
       toast({

@@ -18,7 +18,6 @@ export const SignupContainer = () => {
   const [validationError, setValidationError] = useState(null);
   async function onSignupFormSubmit(e) {
     e.preventDefault();
-    console.log("Signup form submitted", signupForm);
 
     if (
       !signupForm.email ||
@@ -26,7 +25,6 @@ export const SignupContainer = () => {
       !signupForm.confirmPassword ||
       !signupForm.password
     ) {
-      console.log("All fields are required");
       setValidationError({ message: "All fields are required" });
       return;
     }

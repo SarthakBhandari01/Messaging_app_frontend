@@ -30,7 +30,6 @@ export const UserButton = () => {
     });
     navigate("/auth/signin");
   }
-  console.log("in user button",auth);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

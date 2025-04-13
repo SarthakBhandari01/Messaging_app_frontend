@@ -1,14 +1,16 @@
 import "quill/dist/quill.snow.css";
 
+import { ImageIcon } from "lucide-react";
 import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
+import { MdSend } from "react-icons/md";
 import { PiTextAa } from "react-icons/pi";
 
 import { Button } from "@/components/ui/button";
 
 import { Hint } from "../Hint/Hint";
 
-export const Editor = () => {
+export const Editor = ({ onSubmit }) => {
   const containerRef = useRef();
   const quillRef = useRef();
   const defaultValueRef = useRef();
@@ -32,7 +34,7 @@ export const Editor = () => {
       modules: {
         toolbar: [
           ["bold", "italic", "underline", "strike"],
-          ["link", "image"],
+          ["link"],
           [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
           ["clean"],
         ],
@@ -55,8 +57,6 @@ export const Editor = () => {
         },
       },
     };
-    console.log("container ", container);
-    console.log("Editor Container => ", editorContainer);
     const quill = new Quill(editorContainer, option);
     quillRef.current = quill;
     quillRef.current.focus();
@@ -67,10 +67,8 @@ export const Editor = () => {
     <div className="flex flex-col">
       <div className="flex flex-col border border-slate-500 rounded-md overflow-hidden  focus-within:shadow-sm focus-within:border-slate-400 bg-white">
         <div className="h-full" ref={containerRef} />
-        <div className="flex px-2 pb-2 ">
-          <Hint
-            label={!isToolbarVisible ? "Show Toolbar" : "Hide Toolbar"}
-          >
+        <div className="flex px-2 pb-2">
+          <Hint label={!isToolbarVisible ? "Show Toolbar" : "Hide Toolbar"}>
             <Button
               variant="ghost"
               size="iconSm"
@@ -78,6 +76,30 @@ export const Editor = () => {
               onClick={toggleToolbar}
             >
               <PiTextAa className="size-4" />
+            </Button>
+          </Hint>
+          <Hint label={"Image"}>
+            <Button
+              variant="ghost"
+              size="iconSm"
+              disable={false}
+              onClick={() => {}}
+            >
+              <ImageIcon className="size-4"></ImageIcon>
+            </Button>
+          </Hint>
+          <Hint label={"Send Message"}>
+            <Button
+              size="iconSm"
+              onClick={() => {
+                onSubmit({
+                  body: JSON.stringify(quillRef.current?.getContents()),
+                });
+              }}
+              disable={false}
+              className="ml-auto bg-[#007a6a] hover:bg-[#007a6a]/80 text-white"
+            >
+              <MdSend className="size-4" />
             </Button>
           </Hint>
         </div>
