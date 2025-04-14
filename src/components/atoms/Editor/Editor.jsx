@@ -92,9 +92,13 @@ export const Editor = ({ onSubmit }) => {
             <Button
               size="iconSm"
               onClick={() => {
+                const messageContent = JSON.stringify(
+                  quillRef.current?.getContents()
+                );
                 onSubmit({
-                  body: JSON.stringify(quillRef.current?.getContents()),
+                  body: messageContent,
                 });
+                quillRef.current?.setText("");
               }}
               disable={false}
               className="ml-auto bg-[#007a6a] hover:bg-[#007a6a]/80 text-white"
