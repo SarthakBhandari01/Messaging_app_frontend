@@ -6,6 +6,7 @@ export const MessageRenderer = ({ value }) => {
   const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
+    if(!rendererRef.current)return;
     const container = rendererRef.current;
     const quill = new Quill(document.createElement("div"), {
       theme: "snow",
@@ -13,7 +14,7 @@ export const MessageRenderer = ({ value }) => {
     quill.disable();
     const content = JSON.parse(value);
     quill.setContents(content);
-    setIsEmpty(quill.getText().trim().length === "");
+    setIsEmpty(quill.getText().trim().length === 0);
     container.innerHTML = quill.root.innerHTML;
   }, [value]);
   if (isEmpty) return null;
